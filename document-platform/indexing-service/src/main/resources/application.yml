@@ -1,0 +1,67 @@
+spring:
+
+  application:
+    name: indexing-service
+
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/indexing}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}
+
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+
+  flyway:
+    enabled: true
+
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+
+    consumer:
+      group-id: document-indexing
+      auto-offset-reset: earliest
+      enable-auto-commit: false
+
+      properties:
+        spring.json.trusted.packages: com.example.indexing.messaging.event
+
+    listener:
+      ack-mode: record
+
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: false
+
+
+kafka:
+
+  topics:
+    document-events: document.events
+
+
+opensearch:
+
+  url: ${OPENSEARCH_URL:http://localhost:9200}
+
+
+server:
+
+  port: 8082
+
+
+management:
+
+  endpoints:
+    web:
+      exposure:
+        include:
+          - health
+          - info
+          - metrics
+
+  endpoint:
+    health:
+      probes:
+        enabled: true
