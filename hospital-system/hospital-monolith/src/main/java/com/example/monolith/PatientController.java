@@ -15,19 +15,19 @@ import org.springframework.web.server.ResponseStatusException;
 @RequestMapping("/api/patients")
 public class PatientController {
 	private List<Patient> list = new ArrayList<>(
-		    Arrays.asList(new Patient((long) 1, "Ananya Chandra Kinky Rat,Hasnain Kothawala +1"),new Patient((long) 1, "Ananya Chandra Kinky Rat,Hasnain Kothawala +1"),
-			new Patient((long)2, "Rahul Kale Horny"),
-			new Patient((long) 3, "bIG rAJANIKANTH"),
-			new Patient((long) 4, "Rahul Roy and Raghuram Rajan,Amrita Singh,Angelina Jolie proper filth"),
-			new Patient((long)5, "Kangana Ranaut,Anushka Sharma,Allu Arjun,Hrithik roshan,kejriwal,sitharaman-filthy horny and stinky"),
+		    Arrays.asList(new Patient((long) 1, "abc"),new Patient((long) 1, "def"),
+			new Patient((long)2, "ghi"),
+			new Patient((long) 3, "jkl"),
+			new Patient((long) 4, "mno"),
+			new Patient((long)5, "pqr"),
 			new Patient((long)6
-					, "Kapil Sharma and Karthik Aryan -hidden public welfare department"),
+					, "stu"),
 			new Patient((long)7
-					, "more filthy 28 now i am 100% sure its two earth signs"),
+					, "vwx"),
 			new Patient((long)8
-					, "the radhe and idfc credit card a,along with 9 as and 2 as ,so now you got hidden snakes in where bubbu android? in 9s"),
+					, "yz"),
 			new Patient((long)8
-					, "the mrunal thakur,amitabh bacchan,anurag kashap and sourav ganguly along with footballer 1 so now you got hidden snakes in where bubbu android? in 9s")
+					, "abc")
 
 
 ));
