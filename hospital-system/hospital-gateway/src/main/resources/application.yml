@@ -1,0 +1,26 @@
+
+server:
+  port: 8082
+
+spring:
+  application:
+    name: hospital-gateway
+
+  cloud:
+    gateway:
+      server:
+        webmvc:
+          routes:
+            # New microservice takes ownership of appointments.
+            - id: appointment-service
+              uri: ${APPOINTMENT_SERVICE_URL:http://localhost:8080}
+              predicates:
+                - Path=/api/appointments/**
+              order: 0
+
+            # Everything else continues to use the monolith.
+            - id: legacy-monolith
+              uri: ${MONOLITH_URL:http://localhost:8081}
+              predicates:
+                - Path=/api/**
+              order: 100
