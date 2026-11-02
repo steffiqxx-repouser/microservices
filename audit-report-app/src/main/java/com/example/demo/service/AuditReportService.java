@@ -1,41 +1,28 @@
-
 package com.example.demo.service;
-
-import com.example.demo.model.AuditReport;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+//import com.example.demo.entity.AuditReport;
+//import com.example.demo.repository.AuditReportRepository;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.example.demo.model.AuditReport;
+import com.example.demo.repository.AuditRepository;
+
 @Service
+@Transactional(readOnly = true)
 public class AuditReportService {
 
-    public List<AuditReport> getAllReports() {
+    private final AuditRepository repository;
 
-        return List.of(
-            new AuditReport(
-                1001L,
-                "Infrastructure Security Audit",
-                "2026-10-10",
-                "COMPLETED"
-            ),
-            new AuditReport(
-                1002L,
-                "Database Compliance Audit",
-                "2026-10-15",
-                "PENDING"
-            ),
-            new AuditReport(
-                1003L,
-                "Application Access Audit",
-                "2026-10-20",
-                "COMPLETED"
-            ),
-            new AuditReport(
-                1004L,
-                "Network Security Audit",
-                "2026-10-25",
-                "IN_PROGRESS"
-            )
-        );
+    public AuditReportService(
+    		AuditRepository repository) {
+        this.repository = repository;
+    }
+
+    public List<AuditReport> getAllReports() {
+        return repository.findAllByOrderByReportDateDesc();
     }
 }
