@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Audit Reports</title>
+    <meta charset="UTF-8">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8fafc;
+            margin: 0;
+        }
+
+        .header {
+            background: #1e293b;
+            color: white;
+            padding: 20px 35px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .container {
+            padding: 35px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th, td {
+            padding: 15px;
+            border-bottom: 1px solid #e2e8f0;
+            text-align: left;
+        }
+
+        th {
+            background: #e2e8f0;
+        }
+
+        .status {
+            font-weight: bold;
+        }
+
+        .completed {
+            color: green;
+        }
+
+        .pending {
+            color: orange;
+        }
+
+        .in-progress {
+            color: blue;
+        }
+
+        button {
+            padding: 9px 18px;
+            background: #dc2626;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="header">
+
+    <h2>Audit Reports Dashboard</h2>
+
+    <form th:action="@{/logout}" method="post">
+        <button type="submit">Logout</button>
+    </form>
+
+</div>
+
+<div class="container">
+
+    <h2>Available Audit Reports</h2>
+
+    <p>Welcome to the Audit Reports Portal.</p>
+
+    <table>
+
+        <thead>
+        <tr>
+            <th>Report ID</th>
+            <th>Report Title</th>
+            <th>Report Date</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+
+        <tbody>
+
+        <tr th:each="report : ${reports}">
+
+            <td th:text="${report.id}"></td>
+
+            <td th:text="${report.title}"></td>
+
+            <td th:text="${report.reportDate}"></td>
+
+            <td>
+                <span th:text="${report.status}"
+                      th:classappend="${report.status == 'COMPLETED'} ? 'completed' :
+                                      (${report.status == 'PENDING'} ? 'pending' : 'in-progress')"
+                      class="status">
+                </span>
+            </td>
+
+        </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+</body>
+</html>
