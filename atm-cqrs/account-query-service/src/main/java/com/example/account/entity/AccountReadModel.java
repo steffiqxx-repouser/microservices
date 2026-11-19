@@ -4,8 +4,11 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-
+import jakarta.persistence.Table;
+@Entity
+@Table(name = "account_read_model")
 public class AccountReadModel {
 	@Id
     private Long accountId;

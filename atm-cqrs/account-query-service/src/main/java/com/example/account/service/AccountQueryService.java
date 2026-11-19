@@ -1,8 +1,10 @@
 package com.example.account.service;
 
+import org.springframework.stereotype.Service;
+
 import com.example.account.entity.AccountReadModel;
 import com.example.account.repository.AccountReadRepository;
-
+@Service
 public class AccountQueryService {
 	  private final AccountReadRepository repository;
 
